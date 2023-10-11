@@ -5,6 +5,7 @@ import { GetLocationsService } from 'src/app/services/get-locations.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Location } from 'src/app/interfaces/global/location.interface';
 import { PlacesDialogComponent } from '../../dialogs/places-dialog/places-dialog.component';
+import { Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-location-card',
@@ -23,6 +24,30 @@ export class LocationCardComponent {
       
       this.dataSource = location.results
     }))
+  }
+  SortChange(sort: Sort) {
+    
+    const tableData= this.dataSource.slice()
+    if (!sort.active || sort.direction === '') {
+      this.dataSource = tableData;
+      return;
+    }
+    this.dataSource = tableData.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'name':
+          return this.compare(a.name, b.name, isAsc);
+   
+        default:
+          return 0;
+      }
+    });
+
+
+   
+  }
+  compare(a: number | string, b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
   openDialog(location: LocationResults) {
     this.dialog.open(PlacesDialogComponent,
