@@ -36,6 +36,12 @@
     </span>
   </div>
   <div>
+    <mat-paginator
+      [length]="paginatorSize"
+      [pageSize]="20"
+      aria-label="Select page"
+    >
+    </mat-paginator>
     <div class="card-container" *ngIf="characters | async as chars">
       <mat-card
         class="character-card"

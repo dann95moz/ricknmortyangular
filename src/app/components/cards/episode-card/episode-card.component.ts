@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { Episode } from 'src/app/interfaces/global/episode.interface';
 import { EpisodeResults } from '../../../interfaces/results/episodeResults.interface';
@@ -6,25 +6,47 @@ import { MatDialog } from '@angular/material/dialog';
 import { GetEpisodesService } from 'src/app/services/get-episodes.service';
 import { EpisodesDialogComponent } from '../../dialogs/episodes-dialog/episodes-dialog.component';
 import { MatSort, Sort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'app-episode-card',
   templateUrl: './episode-card.component.html',
   styleUrls: ['./episode-card.component.css'],
 
 })
-export class EpisodeCardComponent {
+export class EpisodeCardComponent implements AfterViewInit{
   episodes = new Observable<Episode>()
   displayedColumns: string[] = ['name', 'episode'];
  
   @ViewChild(MatSort) sort!: MatSort;
-  dataSource: EpisodeResults[]=[]
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  paginatorRef!: MatPaginator;
+  dataSource: EpisodeResults[] = []
+  paginatorSize =16
+  ;
   constructor(
     private GetEpisodesService: GetEpisodesService,
     public dialog: MatDialog,) {
-    this.episodes = this.GetEpisodesService.getFilteredEpisodes().pipe(tap((episodes) => {
-      this.dataSource=episodes.results 
+       this.episodes = this.GetEpisodesService.getFilteredEpisodes().pipe(tap((episodes) => {
+      this.dataSource = episodes.results 
+      this.paginatorSize= episodes.info.count
     }))
 
+  }
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.paginator.page.subscribe((event) => {
+    this.changePage(event.pageIndex);
+      });
+    }, 1000);
+  
+ 
+  }
+  changePage(event:number) {
+    this.episodes = this.GetEpisodesService.getFilteredEpisodes({page:event+1}).pipe(tap((episodes) => {
+      this.dataSource = episodes.results 
+      this.paginatorSize= episodes.info.count
+    }))
+    
   }
    compare(a: number | string, b: number | string, isAsc: boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);

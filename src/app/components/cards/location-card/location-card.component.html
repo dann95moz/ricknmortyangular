@@ -1,11 +1,18 @@
-<div class="card-container" *ngIf="locations | async as place">
+<div class="card-container">
   <mat-card class="character-card">
+    <mat-paginator
+      [length]="paginatorSize"
+      [pageSize]="20"
+      aria-label="Select page"
+    >
+    </mat-paginator>
     <table
       mat-table
       [dataSource]="dataSource"
       class="mat-elevation-z8"
       matSort
       (matSortChange)="SortChange($event)"
+      *ngIf="locations | async as place"
     >
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>

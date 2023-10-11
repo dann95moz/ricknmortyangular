@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { LocationResults } from 'src/app/interfaces/results/locationResult.interface';
 import { GetLocationsService } from 'src/app/services/get-locations.service';
@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Location } from 'src/app/interfaces/global/location.interface';
 import { PlacesDialogComponent } from '../../dialogs/places-dialog/places-dialog.component';
 import { Sort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-location-card',
@@ -16,14 +17,35 @@ export class LocationCardComponent {
   locations = new Observable<Location>()
   dataSource: LocationResults[] = []
   displayedColumns: string[] = ['name', 'type'];
+  paginatorSize = 16
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(
     private GetLocationsService: GetLocationsService,
     public dialog: MatDialog) {
     this.locations = this.GetLocationsService.getFilteredLocations().pipe(tap((location) => {
       console.log(location);
-      
+      this.paginatorSize= location.info.count
       this.dataSource = location.results
     }))
+  }
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.paginator.page.subscribe((event) => {
+    this.changePage(event.pageIndex);
+      });
+    }, 1000);
+  
+ 
+  }
+  changePage(event: number) {
+    this.locations = this.GetLocationsService.getFilteredLocations({page:event+1}).pipe(tap((location) => {
+      console.log(location);
+      
+      this.dataSource = location.results
+      this.paginatorSize= location.info.count
+    }))
+
+    
   }
   SortChange(sort: Sort) {
     

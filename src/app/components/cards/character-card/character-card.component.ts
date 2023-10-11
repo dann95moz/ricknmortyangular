@@ -31,7 +31,7 @@ export class CharacterCardComponent {
       name: new FormControl(),
       gender: new FormControl(),
       status: new FormControl(),
-      page: new FormControl(0)
+      page: new FormControl(1)
     })
     this.characters = this.GetCharacterService.getFilteredCharacters().pipe(tap((characters) => {
       this.paginatorSize=  characters.info.count
@@ -69,8 +69,8 @@ console.log(value);
  
 
   }
-  changePage(event:any) {
-    this.filters.get('page')?.patchValue(event)
+  changePage(event:number) {
+    this.filters.get('page')?.patchValue(event+1)
     console.log( this.filters.get('page')?.value);
     
   }

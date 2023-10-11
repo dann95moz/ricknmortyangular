@@ -14,7 +14,7 @@ export class GetLocationsService {
   constructor(private serialize: SerializeService, private http: HttpClient) { 
 
   }
-  getFilteredLocations(filterEpisode?: filterLocation) {
+  getFilteredLocations(filterEpisode?: filterLocation) {    
     const queryString = this.serialize.serializeObjectToQueryString(filterEpisode);
     return this.http.get<Location>(`${url}/location/?${queryString}`);
   }
