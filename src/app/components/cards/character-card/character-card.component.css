@@ -1,0 +1,11 @@
+.card-container{
+    display: flex;
+    padding: 2rem;
+    flex-wrap: wrap;
+    gap: 2rem
+}
+
+.character-card{
+    width: 13rem;
+    height: 16rem;
+}

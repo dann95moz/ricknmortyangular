@@ -1,0 +1,8 @@
+.header-container{
+    display: flex;
+    justify-content: space-between;
+}
+.header-links{
+    display: flex;
+    gap:1rem
+}
