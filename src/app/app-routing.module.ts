@@ -5,7 +5,8 @@ import { LocationCardComponent } from './components/cards/location-card/location
 import { EpisodeCardComponent } from './components/cards/episode-card/episode-card.component';
 
 const routes: Routes = [
-  {path: '', redirectTo:'characters', pathMatch:'full'},
+  { path: '', redirectTo: 'characters', pathMatch: 'full' },
+  
   { path: 'characters', component: CharacterCardComponent },
   { path: 'locations', component: LocationCardComponent },
   {path: 'episodes', component: EpisodeCardComponent}

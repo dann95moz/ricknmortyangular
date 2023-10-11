@@ -14,8 +14,8 @@ export class GetCharacterService {
   constructor( private serialize: SerializeService, private http: HttpClient) { }
 
   getFilteredCharacters(filterCharacter?: filterCharacter) : Observable<Characters> {
-    const queryString = this.serialize.serializeObjectToQueryString(filterCharacter);
-    return this.http.get<Characters>(`${url}/character/?  ${queryString}`);
+    const queryString = this.serialize.serializeObjectToQueryString(filterCharacter);        
+    return this.http.get<Characters>(`${url}/character/?${queryString}`);
    }
   getFilteredCharactersByIds(filterCharacter: string[]): Observable<CharactersResults[] > {
     return this.http.get<CharactersResults[] >(`${url}/character/${filterCharacter}`);

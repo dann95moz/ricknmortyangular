@@ -21,7 +21,13 @@ import { MatDialogModule} from '@angular/material/dialog';
 import { CharacterDialogComponent } from './components/dialogs/character-dialog/character-dialog.component';
 import { PlacesDialogComponent } from './components/dialogs/places-dialog/places-dialog.component';
 import { EpisodesDialogComponent } from './components/dialogs/episodes-dialog/episodes-dialog.component';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SortCharactersPipe } from './pipes/sort-characters.pipe';
+import { MatPaginatorModule } from '@angular/material/paginator'
+import { MatSortModule } from '@angular/material/sort';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +38,7 @@ import {MatTableModule} from '@angular/material/table';
     CharacterDialogComponent,
     PlacesDialogComponent,
     EpisodesDialogComponent,
+    SortCharactersPipe,
   ],
   imports: [
     HttpClientModule,
@@ -42,7 +49,12 @@ import {MatTableModule} from '@angular/material/table';
     MatSidenavModule, MatFormFieldModule, MatSelectModule, MatButtonModule,
     MatCardModule, MatChipsModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

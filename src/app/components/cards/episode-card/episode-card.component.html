@@ -1,15 +1,21 @@
 <div class="card-container" *ngIf="episodes | async as chapter">
   <mat-card class="character-card">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      class="mat-elevation-z8"
+      (matSortChange)="SortChange($event)"
+    >
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>name</th>
         <td mat-cell *matCellDef="let element" (click)="openDialog(element)">
           {{ element.name }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="episode">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>episode</th>
         <td mat-cell *matCellDef="let element" (click)="openDialog(element)">
           {{ element.episode }}
         </td>

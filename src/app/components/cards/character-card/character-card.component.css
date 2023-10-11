@@ -1,8 +1,19 @@
-.card-container{
+.container{
     display: flex;
     padding: 2rem;
+    gap: 2rem;
+  
+}
+.search-col{
+    max-width:200px
+}
+
+.card-container{
+    display: flex;
+  
     flex-wrap: wrap;
-    gap: 2rem
+    gap: 2rem;
+    justify-content: center;
 }
 
 .character-card{
@@ -10,6 +21,9 @@
     height: 16rem;
     border-radius: 8px;
     cursor: pointer;
+}
+.mdc-card__media:last-child{
+    border-radius: 8px !important;
 }
 .card-img{
     height: 100%;

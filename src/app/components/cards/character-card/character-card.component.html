@@ -1,15 +1,62 @@
-<div class="card-container" *ngIf="characters | async as chars">
-  <mat-card
-    class="character-card"
-    *ngFor="let character of chars.results"
-    (click)="openDialog(character)"
-  >
-    <div>
-      <p class="card-content-name">{{ character.name }}</p>
-      <mat-chip-listbox class="card-content-status">
-        <mat-chip-option>{{ character.status }}</mat-chip-option>
-      </mat-chip-listbox>
+<div class="container">
+  <div class="search-col">
+    <div [formGroup]="filters">
+      <mat-form-field>
+        <mat-label>Search By Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+      <span>
+        <p>status:</p>
+        <mat-chip-listbox formControlName="status">
+          <mat-chip-option value="alive">Alive</mat-chip-option>
+          <mat-chip-option value="dead">Dead</mat-chip-option>
+          <mat-chip-option value="unknown">Unknown</mat-chip-option>
+        </mat-chip-listbox>
+      </span>
+      <span>
+        <p>gender:</p>
+        <mat-chip-listbox formControlName="gender">
+          <mat-chip-option value="female">female</mat-chip-option>
+          <mat-chip-option value="male">male</mat-chip-option>
+          <mat-chip-option value="genderless">genderless</mat-chip-option>
+          <mat-chip-option value="unknown">Unknown</mat-chip-option>
+        </mat-chip-listbox>
+      </span>
     </div>
-    <img mat-card-image src="{{ character.image }}" class="card-img" />
-  </mat-card>
+    <span>
+      <br />
+      <mat-form-field>
+        <mat-label>SortBy</mat-label>
+        <mat-select [(ngModel)]="sortBy">
+          <mat-option value="name">Name</mat-option>
+          <mat-option value="gender">Gender</mat-option>
+          <mat-option value="status">Status</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </span>
+  </div>
+  <div>
+    <div class="card-container" *ngIf="characters | async as chars">
+      <mat-card
+        class="character-card"
+        *ngFor="let character of chars.results | sortCharacters : sortBy"
+        (click)="openDialog(character)"
+      >
+        <div>
+          <p class="card-content-name">{{ character.name }}</p>
+          <mat-chip-listbox class="card-content-status">
+            <mat-chip-option>{{ character.status }}</mat-chip-option>
+          </mat-chip-listbox>
+        </div>
+        <img mat-card-image src="{{ character.image }}" class="card-img" />
+      </mat-card>
+    </div>
+    <mat-paginator
+      [length]="paginatorSize"
+      [pageSize]="20"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div>
 </div>
