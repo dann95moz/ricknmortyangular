@@ -13,7 +13,6 @@ export class CharacterDialogComponent {
     public dialogRef: MatDialogRef<CharacterCardComponent>,
     @Inject(MAT_DIALOG_DATA) public character: CharactersResults
   ) {
-  console.log(character);
   
 }
 }

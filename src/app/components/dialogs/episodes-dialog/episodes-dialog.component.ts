@@ -14,16 +14,16 @@ import { GetCharacterService } from 'src/app/services/get-character.service';
 })
 export class EpisodesDialogComponent {
   characters= new Observable<CharactersResults[]>()
-  episodeNumbers:number[] = []
+  episodeNumbers:string[] = []
   constructor(
     public dialogRef: MatDialogRef<EpisodeCardComponent>,
     @Inject(MAT_DIALOG_DATA) public episode: EpisodeResults,
     public GetCharactersService: GetCharacterService
   ) {
     this.episode.characters.forEach((character) => {
-     this.episodeNumbers.push( Number(character.slice(-1)))
+     this.episodeNumbers.push( character.slice(-1))
     })
-    console.log(episode);
+
     
     this.characters= this.GetCharactersService.getMultipleCharacters(this.episodeNumbers)
     

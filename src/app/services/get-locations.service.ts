@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { filterLocation } from '../interfaces/filters/filterLocation.interface';
 import { Episode } from '../interfaces/global/episode.interface';
 import { url } from './api.config';
+import { Location } from '../interfaces/global/location.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,6 @@ export class GetLocationsService {
   }
   getFilteredLocations(filterEpisode?: filterLocation) {
     const queryString = this.serialize.serializeObjectToQueryString(filterEpisode);
-    return this.http.get<Episode>(`${url}/location/?${queryString}`);
+    return this.http.get<Location>(`${url}/location/?${queryString}`);
   }
 }

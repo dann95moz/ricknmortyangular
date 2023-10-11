@@ -1,1 +1,15 @@
-<p>places-dialog works!</p>
+<h1 mat-dialog-title>{{ episode.name }}</h1>
+<div mat-dialog-content>
+  <p>Created on: {{ episode.created | date : "short" }}</p>
+  <p>Dimension: {{ episode.dimension }}</p>
+  <p>type: {{ episode.type }}</p>
+  <p>Residents:</p>
+  <ul>
+    <li *ngFor="let resident of characters | async">
+      {{ resident.name }}
+    </li>
+  </ul>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</div>

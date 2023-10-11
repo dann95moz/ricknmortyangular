@@ -16,7 +16,7 @@ export class CharacterCardComponent {
     private GetCharacterService: GetCharacterService,
     public dialog: MatDialog
   ) {
-   this.characters= this.GetCharacterService.getFilteredCharacters().pipe(tap(console.log))
+   this.characters= this.GetCharacterService.getFilteredCharacters()
   }
   openDialog(character:CharactersResults) {
     const dialogRef = this.dialog.open(CharacterDialogComponent, {

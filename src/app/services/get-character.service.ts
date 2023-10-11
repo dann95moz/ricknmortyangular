@@ -20,7 +20,7 @@ export class GetCharacterService {
   getFilteredCharactersByIds(filterCharacter: string[]): Observable<CharactersResults[] > {
     return this.http.get<CharactersResults[] >(`${url}/character/${filterCharacter}`);
   }
-  getMultipleCharacters(episodes: number[]): Observable<CharactersResults[]> {
+  getMultipleCharacters(episodes: string[]): Observable<CharactersResults[]> {
     const stringNumbers=episodes.toString()
     return this.http.get<CharactersResults[]>(`${url}/character/${stringNumbers}`);
   }
