@@ -21,6 +21,7 @@ import { MatDialogModule} from '@angular/material/dialog';
 import { CharacterDialogComponent } from './components/dialogs/character-dialog/character-dialog.component';
 import { PlacesDialogComponent } from './components/dialogs/places-dialog/places-dialog.component';
 import { EpisodesDialogComponent } from './components/dialogs/episodes-dialog/episodes-dialog.component';
+import {MatTableModule} from '@angular/material/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,7 @@ import { EpisodesDialogComponent } from './components/dialogs/episodes-dialog/ep
     MatSidenavModule, MatFormFieldModule, MatSelectModule, MatButtonModule,
     MatCardModule, MatChipsModule,
     MatDialogModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

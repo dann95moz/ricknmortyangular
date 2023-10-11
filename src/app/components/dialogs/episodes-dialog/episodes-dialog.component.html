@@ -1,1 +1,15 @@
-<p>episodes-dialog works!</p>
+<h1 mat-dialog-title>{{ episode.name }}</h1>
+<div mat-dialog-content>
+  <p>Created on {{ episode.created | date : "short" }}</p>
+  <p>Air date: {{ episode.air_date }}</p>
+  <p>Episode: {{ episode.episode }}</p>
+  <p>Characters:</p>
+  <ul>
+    <li *ngFor="let character of characters | async">
+      <p>{{ character.name }}</p>
+    </li>
+  </ul>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</div>
