@@ -8,4 +8,30 @@
 .character-card{
     width: 13rem;
     height: 16rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.card-img{
+    height: 100%;
+    object-fit: cover;
+}
+.card-content-name{
+    z-index: 1;
+    display: flex;
+    position: absolute;
+    padding: 8px;
+    background-color: rgb(234, 234, 234);
+    border-radius: 2rem;
+    top: 1rem;
+    left: 1rem;
+    font-size: 1rem;
+}
+.card-content-status{
+    z-index: 1;
+    display: flex;
+    position: absolute;
+    border-radius: 2rem;
+    bottom: 1rem;
+    left: 1rem;
+    font-size: 1rem;
 }

@@ -15,7 +15,12 @@ import {MatCardModule} from '@angular/material/card';
 import { CharacterCardComponent } from './components/cards/character-card/character-card.component';
 import { EpisodeCardComponent } from './components/cards/episode-card/episode-card.component';
 import { LocationCardComponent } from './components/cards/location-card/location-card.component';
+import {MatChipsModule} from '@angular/material/chips';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule} from '@angular/material/dialog';
+import { CharacterDialogComponent } from './components/dialogs/character-dialog/character-dialog.component';
+import { PlacesDialogComponent } from './components/dialogs/places-dialog/places-dialog.component';
+import { EpisodesDialogComponent } from './components/dialogs/episodes-dialog/episodes-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +28,9 @@ import { HttpClientModule } from '@angular/common/http';
     CharacterCardComponent,
     EpisodeCardComponent,
     LocationCardComponent,
+    CharacterDialogComponent,
+    PlacesDialogComponent,
+    EpisodesDialogComponent,
   ],
   imports: [
     HttpClientModule,
@@ -31,7 +39,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MatToolbarModule, MatButtonModule, MatIconModule,
     MatSidenavModule, MatFormFieldModule, MatSelectModule, MatButtonModule,
-    MatCardModule
+    MatCardModule, MatChipsModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

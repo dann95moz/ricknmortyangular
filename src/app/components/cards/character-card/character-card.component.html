@@ -1,10 +1,15 @@
 <div class="card-container" *ngIf="characters | async as chars">
-  <mat-card class="character-card" *ngFor="let character of chars.results">
-    <mat-card-header>titulo</mat-card-header>
-
-    <mat-card-content>Simple card</mat-card-content>
-    <img mat-card-image />
-    <mat-card-actions></mat-card-actions>
-    <mat-card-footer></mat-card-footer>
+  <mat-card
+    class="character-card"
+    *ngFor="let character of chars.results"
+    (click)="openDialog(character)"
+  >
+    <div>
+      <p class="card-content-name">{{ character.name }}</p>
+      <mat-chip-listbox class="card-content-status">
+        <mat-chip-option>{{ character.status }}</mat-chip-option>
+      </mat-chip-listbox>
+    </div>
+    <img mat-card-image src="{{ character.image }}" class="card-img" />
   </mat-card>
 </div>

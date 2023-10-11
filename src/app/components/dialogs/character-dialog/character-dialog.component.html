@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>{{ character.name }}</h1>
+<div mat-dialog-content>
+  <p>Created on {{ character.created | date : "short" }}</p>
+  <p>Gender: {{ character.gender }}</p>
+  <p>location: {{ character.location.name }}</p>
+  <p>species: {{ character.species }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button>Close</button>
+</div>
